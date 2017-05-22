@@ -1,6 +1,6 @@
 {
   "name": "tree-browser",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A typescript library to generate an interactive tree browser",
   "main": "index.js",
   "dependencies": {},
