@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TreeBrowser Example</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+	<style type="text/css">
+		.tree-browser {
+			width: 100%;
+		}
+
+		.tree-browser > ul {
+			position: relative;
+		}
+
+		.tree-browser ul {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+		}
+
+		.tree-browser ul ul {
+			border-left: 1px dotted #ccc;
+			padding-left: 16px;
+			margin-left: 4px;
+		}
+
+		.tree-browser .treenode-content {
+			position: relative;
+			height: 30px;
+			line-height: 30px;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			z-index: 2;
+		}
+
+		.tree-browser .treenode-content a.toggle {
+			margin-right: 5px;
+			font-size: 14px;
+		}
+
+		.tree-browser .treenode-overlay {
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: 30px;
+			margin-top: -30px;
+			z-index: 1;
+		}
+
+		.tree-browser .treenode-content:hover + .treenode-overlay {
+			background: rgba(218,250,255,.5);
+		}
+
+		.tree-browser span.treenode-checkbox {
+			display: inline-block;
+			line-height: 30px;
+		}
+		.tree-browser span.treenode-checkbox > input[type=checkbox] {
+			line-height: 30px;
+			padding: 0;
+			margin: 0;
+		}
+
+		.hidden {
+			display: none;
+		}
+	</style>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+	<script src="node_modules/systemjs/dist/system.js"></script>
+	<script>
+		function example( treeBrowser ) {
+			var nodes = [
+				{
+					text: 'Root Node',
+					checkbox: { enabled: false },
+					expand: { enabled: true },
+					children: [
+						{
+							text: 'Child One',
+							checkbox: { enabled: false },
+							expand: { enabled: false },
+							children: []
+						},
+						{
+							text: 'Child Two',
+							checkbox: { enabled: false },
+							expand: { enabled: false },
+							children: []
+						}
+					]
+				}
+			];
+
+			var config = {
+				nodes: nodes,
+				displayRoots: true,
+				renderTo: $( '#test-tree' ),
+				renderDelegates: {
+					expand: function( node, expanded ) {
+						return expanded?
+							'<i class="fa fa-minus-square-o" aria-hidden="true"></i>':
+							'<i class="fa fa-plus-square-o" aria-hidden="true"></i>';
+					},
+					checkboxSpacer: function( node ) {
+						return '<span style="display:inline-block; width: 30px;">&nbsp;</span>';
+					},
+					expandSpacer: function( node ) {
+						return '<span style="display:inline-block; width: 12px;">&nbsp;</span>';
+					}
+				}
+			};
+			new treeBrowser( config );
+		}
+
+		SystemJS.import('./TreeBrowser.js').then(
+			function ( module ) {
+				example( module.default );
+			}
+		);
+	</script>
+</head>
+<body>
+	<div id="test-tree" class="tree-browser"></div>
+</body>
+</html>

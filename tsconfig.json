@@ -4,6 +4,10 @@
         "target": "es5",
         "noImplicitAny": false,
         "sourceMap": false,
-        "moduleResolution": "classic"
-    }
+        "moduleResolution": "classic",
+        "outDir": "dist"
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }

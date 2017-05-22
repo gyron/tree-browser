@@ -10,7 +10,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "tslint -c ./tslint.json ./src/**/*.ts"
+    "lint": "tslint -c ./tslint.json ./src/**/*.ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",

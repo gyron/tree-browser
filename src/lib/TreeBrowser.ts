@@ -41,7 +41,7 @@ interface Window { [key: string]: any }
 export default class TreeBrowser {
 
 	constructor( private config: TreeBrowserConfig ) {
-		this.applyDefaults();
+		this.applyConfigDefaults();
 
 		// todo: handle postponed init in config
 		this.init();
@@ -54,18 +54,24 @@ export default class TreeBrowser {
 
 		this.config.renderTo.append( this.query( '<ul>' ).append( rootNodes ) );
 
-		this.query( '.tree-browser a.toggle' ).on( 'click.tree-browser', ( e: any ) => _this.onClickExpandToggle( e ) );
-		this.query( '.tree-browser input[type="checkbox"]' ).on( 'change.tree-browser', ( e: any ) => _this.onChangeCheckbox( e ) );
+		this.query( 'a.toggle', this.config.renderTo )
+			.on( 'click.tree-browser', ( e: any ) => _this.onClickExpandToggle( e ) );
+		this.query( 'input[type="checkbox"]', this.config.renderTo )
+			.on( 'change.tree-browser', ( e: any ) => _this.onChangeCheckbox( e ) );
 
 		// todo: full row select
 	}
 
-	private applyDefaults() {
+	private applyConfigDefaults() {
 		this.config.jquery = this.config.jquery || '$';
 	}
 
-	private query( anything: any ): JQuery {
-		return window[this.config.jquery]( anything );
+	private applyNodeDefaults() {
+
+	}
+
+	private query( anything: any, parentEl: JQuery = null ): JQuery {
+		return window[this.config.jquery]( anything, parentEl );
 	}
 
 	private onChangeCheckbox( event: any ) {
@@ -136,10 +142,9 @@ export default class TreeBrowser {
 			const expandLink = this.query( '<a class="toggle"></a>' );
 
 			childNodeContainer.append( childNodes );
-			if ( node.expand.expanded ) {
-				childNodeContainer.removeClass( 'hidden' );
-				expandLink.addClass( 'expanded' );
-			}
+			childNodeContainer.toggleClass( 'hidden', !node.expand.expanded );
+
+			expandLink.toggleClass( 'expanded', node.expand.expanded );
 			expandLink.html( this.config.renderDelegates.expand( node, node.expand.expanded ) );
 			nodeContent.prepend( expandLink );
 		}
