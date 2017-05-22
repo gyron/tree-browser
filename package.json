@@ -1,0 +1,35 @@
+{
+  "name": "tree-browser",
+  "version": "0.0.1",
+  "description": "A typescript library to generate an interactive tree browser",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jquery": "^2.0.45",
+    "typescript": "~2.3.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint -c ./tslint.json ./src/**/*.ts",
+    "lint2": "tslint --type-check --project tsconfig.json './src/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gyron/tree-browser.git"
+  },
+  "keywords": [
+    "tree",
+    "browser",
+    "expand",
+    "collapse",
+    "folder",
+    "directory",
+    "browse"
+  ],
+  "author": "Dave Goodchild",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gyron/tree-browser/issues"
+  },
+  "homepage": "https://github.com/gyron/tree-browser#readme"
+}

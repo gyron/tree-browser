@@ -1,0 +1,21 @@
+node_modules
+/temp
+/coverage
+/dist
+/typings
+
+*.log
+
+.idea/
+
+# Standard OS-specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
