@@ -75,18 +75,18 @@
 			var nodes = [
 				{
 					text: 'Root Node',
-					checkbox: { enabled: false },
+					checkbox: { enabled: true, pseudo: true, value: "this will not render", togglesChildren: true },
 					expand: { enabled: true },
 					children: [
 						{
 							text: 'Child One',
-							checkbox: { enabled: false },
+							checkbox: { enabled: true, name: "a", value: "1" },
 							expand: { enabled: false },
 							children: []
 						},
 						{
 							text: 'Child Two',
-							checkbox: { enabled: false },
+							checkbox: { enabled: true, name: "b", value: "2", togglesParent: true },
 							expand: { enabled: false },
 							children: []
 						}
@@ -115,7 +115,7 @@
 			new treeBrowser( config );
 		}
 
-		SystemJS.import('./TreeBrowser.js').then(
+		SystemJS.import('./src/lib/TreeBrowser.js').then(
 			function ( module ) {
 				example( module.default );
 			}
